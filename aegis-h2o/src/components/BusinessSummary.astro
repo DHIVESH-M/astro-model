@@ -1,0 +1,160 @@
+---
+const summaryData = [
+  {
+    title: '1. Problem Being Addressed',
+    status: 'Confirmed' as const,
+    badgeText: 'Validated Problem',
+    color: '#065F46',
+    bgColor: '#ECFDF5',
+    borderColor: '#A7F3D0',
+    description: 'Delayed manual water testing leads to undetected contamination events. Traditional infrastructure lacks continuous real-time telemetry across multi-parameter chemical and physical metrics.'
+  },
+  {
+    title: '2. Proposed Solution',
+    status: 'In Development' as const,
+    badgeText: 'Prototype Active',
+    color: '#1E40AF',
+    bgColor: '#EFF6FF',
+    borderColor: '#BFDBFE',
+    description: 'An open-source IoT hardware platform (ESP32) coupled with multi-sensor arrays (pH, TDS, turbidity, flow), edge signal validation, machine learning anomaly classification, and web dashboard monitoring.'
+  },
+  {
+    title: '3. Target Users',
+    status: 'Proposed' as const,
+    badgeText: 'Target Segments',
+    color: '#92400E',
+    bgColor: '#FFFBEB',
+    borderColor: '#FDE68A',
+    description: 'Academic environmental engineering researchers, hackathon evaluation panels, water technology R&D labs, educational institutions, and industrial pilot plant operators.'
+  },
+  {
+    title: '4. Current Development Stage',
+    status: 'In Development' as const,
+    badgeText: 'TRL 4 - Lab Prototype',
+    color: '#1E40AF',
+    bgColor: '#EFF6FF',
+    borderColor: '#BFDBFE',
+    description: 'Functional hardware-software prototype with working sensor probes, ESP32 telemetry packaging, ML model classification scripts, and static web platform build.'
+  },
+  {
+    title: '5. Future Commercialization',
+    status: 'Proposed' as const,
+    badgeText: 'Future Roadmap',
+    color: '#92400E',
+    bgColor: '#FFFBEB',
+    borderColor: '#FDE68A',
+    description: 'Exploring pre-assembled monitoring node distribution, institutional technical support subscriptions, custom telemetry API integrations, and research grant partnerships.'
+  },
+  {
+    title: '6. Key Assumptions',
+    status: 'To Be Validated' as const,
+    badgeText: 'Hypotheses',
+    color: '#991B1B',
+    bgColor: '#FEF2F2',
+    borderColor: '#FCA5A5',
+    description: 'Assumes low-cost probes maintain acceptable calibration stability over extended deployments, and institutional users require open-source CAD/software customization.'
+  },
+  {
+    title: '7. Validation Requirements',
+    status: 'To Be Validated' as const,
+    badgeText: 'Rigor Checks',
+    color: '#991B1B',
+    bgColor: '#FEF2F2',
+    borderColor: '#FCA5A5',
+    description: 'Requires certified laboratory challenge testing against benchmark water matrices, long-term biofouling drift evaluation, and multi-node field deployment trials.'
+  }
+];
+---
+
+<div class="summary-wrapper reveal-on-scroll">
+  <div class="summary-header">
+    <span class="section-eyebrow">STRATEGY SUMMARY</span>
+    <h3 class="summary-main-title">Business & Technical Evaluation Matrix</h3>
+    <p class="summary-main-desc">
+      A transparent breakdown of Aegis H2O development status, core hypotheses, and scientific validation requirements.
+    </p>
+  </div>
+
+  <div class="summary-grid">
+    {summaryData.map(item => (
+      <div class="summary-card">
+        <div class="summary-card-top">
+          <h4 class="summary-card-title">{item.title}</h4>
+          <span class="summary-badge" style={`background-color: ${item.bgColor}; color: ${item.color}; border-color: ${item.borderColor}`}>
+            {item.badgeText}
+          </span>
+        </div>
+        <p class="summary-card-desc">{item.description}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .summary-wrapper {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .summary-main-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-main-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .summary-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .summary-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .summary-card-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .summary-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full);
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .summary-card-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

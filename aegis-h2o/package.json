@@ -1,0 +1,23 @@
+{
+  "name": "aegis-h2o",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^3.1.9",
+    "astro": "^4.16.14",
+    "animejs": "^3.2.2",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/animejs": "^3.1.12"
+  }
+}

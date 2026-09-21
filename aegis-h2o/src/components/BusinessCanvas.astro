@@ -1,0 +1,196 @@
+---
+import CanvasBlock from './CanvasBlock.astro';
+
+const canvasData = [
+  {
+    blockNumber: '01',
+    title: 'Key Partners',
+    subtitle: 'Strategic Ecosystem',
+    icon: 'partners',
+    gridArea: 'partners',
+    items: [
+      { name: 'Water Technology Suppliers', description: 'Flow control components, manifolds & sampling valves', status: 'Proposed' as const },
+      { name: 'Sensor Manufacturers', description: 'pH, TDS, turbidity & optical sensing hardware vendors', status: 'Proposed' as const },
+      { name: 'Rathinam Global University', description: 'Academic research laboratory support & validation environment', status: 'Confirmed' as const },
+      { name: 'Water Treatment Organizations', description: 'Field testing sites & municipal baseline datasets', status: 'Proposed' as const }
+    ]
+  },
+  {
+    blockNumber: '02',
+    title: 'Key Activities',
+    subtitle: 'Core Operations',
+    icon: 'activities',
+    gridArea: 'activities',
+    items: [
+      { name: 'IoT System Development', description: 'ESP32 firmware, signal conditioning & telemetry bus design', status: 'In Development' as const },
+      { name: 'ML Model Development', description: 'Multi-parameter feature classification & anomaly detection', status: 'In Development' as const },
+      { name: 'Tri-Layer Filtration Research', description: 'Media layer testing (stainless mesh, carbon, nanofiber)', status: 'In Development' as const },
+      { name: 'Web Dashboard & API Development', description: 'Real-time telemetry portal & data visualization', status: 'In Development' as const }
+    ]
+  },
+  {
+    blockNumber: '03',
+    title: 'Key Resources',
+    subtitle: 'Essential Assets',
+    icon: 'resources',
+    gridArea: 'resources',
+    items: [
+      { name: 'ESP32 & Multi-Sensor Hardware', description: 'ADC modules, DS18B20 thermal probe, optical sensors', status: 'Confirmed' as const },
+      { name: 'Research Datasets & Models', description: 'Trained Random Forest/SVM classification pipelines', status: 'In Development' as const },
+      { name: 'Team Super Clusters', description: 'Interdisciplinary hardware, software & CAD engineers', status: 'Confirmed' as const },
+      { name: 'Backend & Web Infrastructure', description: 'Vercel hosting, REST endpoints & WebSocket servers', status: 'Confirmed' as const }
+    ]
+  },
+  {
+    blockNumber: '04',
+    title: 'Value Propositions',
+    subtitle: 'Unique Offerings',
+    icon: 'value',
+    gridArea: 'value',
+    items: [
+      { name: 'Data-Driven Continuous Monitoring', description: 'Real-time telemetry replacing delayed manual sampling', status: 'In Development' as const },
+      { name: 'Integrated Multi-Sensor Sensing', description: 'Correlated evaluation of pH, TDS, turbidity & flow rate', status: 'In Development' as const },
+      { name: 'Technology-Assisted Filtration', description: 'Research framework evaluating multi-stage separation media', status: 'Proposed' as const },
+      { name: 'Accessible Research Platform', description: 'Open-source code, 3D CAD files & transparent methodology', status: 'Confirmed' as const }
+    ]
+  },
+  {
+    blockNumber: '05',
+    title: 'Customer Relationships',
+    subtitle: 'Engagement Strategy',
+    icon: 'relationships',
+    gridArea: 'relationships',
+    items: [
+      { name: 'Technical Documentation & Guides', description: 'Comprehensive open-source repos & CAD specifications', status: 'Confirmed' as const },
+      { name: 'Institutional Technical Support', description: 'Direct onboarding for academic & research evaluators', status: 'Proposed' as const },
+      { name: 'Community Feedback Loops', description: 'GitHub issue tracking & collaborative research feedback', status: 'In Development' as const }
+    ]
+  },
+  {
+    blockNumber: '06',
+    title: 'Customer Segments',
+    subtitle: 'Target Audience',
+    icon: 'segments',
+    gridArea: 'segments',
+    items: [
+      { name: 'Research & Academic Institutions', description: 'Environmental engineering departments & hackathon judges', status: 'Proposed' as const },
+      { name: 'Water Technology Organizations', description: 'R&D labs seeking open-source monitoring prototypes', status: 'Proposed' as const },
+      { name: 'Water Treatment Operators', description: 'Industrial/municipal pilot testers exploring real-time IoT', status: 'Future' as const }
+    ]
+  },
+  {
+    blockNumber: '07',
+    title: 'Key Channels',
+    subtitle: 'Delivery Networks',
+    icon: 'channels',
+    gridArea: 'channels',
+    items: [
+      { name: 'Aegis H2O Web Portal', description: 'Official project showcase, live dashboard & documentation', status: 'Confirmed' as const },
+      { name: 'Open-Source Repositories', description: 'GitHub source code & 3D CAD model downloads', status: 'Confirmed' as const },
+      { name: 'Academic & Hackathon Events', description: 'Demonstrations, project reviews & technical exhibitions', status: 'Confirmed' as const }
+    ]
+  },
+  {
+    blockNumber: '08',
+    title: 'Cost Structure',
+    subtitle: 'Financial Allocation',
+    icon: 'cost',
+    gridArea: 'cost',
+    items: [
+      { name: 'Sensors & Microcontroller Hardware', description: 'ESP32 modules, pH probes, TDS meters, optical sensors', status: 'Confirmed' as const },
+      { name: 'Filtration Media & 3D Printing', description: 'Activated carbon, stainless mesh & enclosure prints', status: 'In Development' as const },
+      { name: 'Cloud Infrastructure & API Hosting', description: 'Domain routing, Vercel deployments & database telemetry', status: 'Confirmed' as const }
+    ]
+  },
+  {
+    blockNumber: '09',
+    title: 'Revenue Streams',
+    subtitle: 'Future Commercial Potential',
+    icon: 'revenue',
+    gridArea: 'revenue',
+    items: [
+      { name: 'Hardware System Prototype Sales', description: 'Pre-assembled, calibrated monitoring hardware units', status: 'Future' as const },
+      { name: 'Institutional Custom Integration', description: 'Tailored API & telemetry solutions for academic labs', status: 'Future' as const },
+      { name: 'Research Grants & Collaborations', description: 'Academic research funding & partner sponsorships', status: 'Proposed' as const }
+    ]
+  }
+];
+---
+
+<div class="bmc-wrapper reveal-on-scroll">
+  <div class="bmc-header-bar">
+    <div class="header-status">
+      <span class="status-legend"><span class="dot confirmed"></span> Confirmed</span>
+      <span class="status-legend"><span class="dot dev"></span> In Development</span>
+      <span class="status-legend"><span class="dot proposed"></span> Proposed</span>
+      <span class="status-legend"><span class="dot future"></span> Future</span>
+    </div>
+  </div>
+
+  <div class="bmc-grid">
+    {canvasData.map(block => (
+      <CanvasBlock {...block} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .bmc-wrapper {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .bmc-header-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .header-status {
+    display: flex;
+    gap: 1rem;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  .status-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .dot.confirmed { background-color: #10B981; }
+  .dot.dev { background-color: #3B82F6; }
+  .dot.proposed { background-color: #F59E0B; }
+  .dot.future { background-color: #94A3B8; }
+
+  .bmc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .bmc-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-areas:
+        "partners activities value relationships segments"
+        "partners resources  value channels      segments"
+        "cost     cost       revenue revenue     revenue";
+      gap: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TeamCard from '../components/TeamCard.astro';
+
+const teamMembers = [
+  {
+    name: 'Super Clusters Engineering Lead',
+    role: 'Embedded & IoT Architect',
+    responsibilities: 'ESP32 firmware development, hardware signal conditioning, ADC calibration, and sensor bus driver integration.',
+    contribution: 'Designed multi-sensor hardware manifold and low-latency JSON telemetry packaging pipeline.',
+    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
+    initials: 'EL'
+  },
+  {
+    name: 'Super Clusters ML Specialist',
+    role: 'Machine Learning & Data Analyst',
+    responsibilities: 'Feature vector extraction, dataset normalization, model training (Random Forest / SVM), and anomaly thresholding.',
+    contribution: 'Evaluated multi-parameter correlation models for water anomaly classification.',
+    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
+    initials: 'ML'
+  },
+  {
+    name: 'Super Clusters CAD & Mechanical Researcher',
+    role: '3D Design & Filtration Specialist',
+    responsibilities: 'Mechanical housing design, fluid channel CAD modeling, and 3-stage physical filtration layer geometry.',
+    contribution: 'Authored open-source 3D printable manifold CAD repositories (`Aegis-H2O-3D`).',
+    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O-3D.git',
+    initials: 'CR'
+  },
+  {
+    name: 'Super Clusters Full-Stack Developer',
+    role: 'Frontend & API Systems Developer',
+    responsibilities: 'Real-time telemetry API routes, WebSocket dashboard integration, and research documentation interface.',
+    contribution: 'Architected responsive web portal and interactive telemetry visualization suite.',
+    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
+    initials: 'FS'
+  }
+];
+
+const projectGoals = [
+  'Establish open-source, continuous multi-parameter IoT water monitoring baseline.',
+  'Evaluate machine learning algorithms for automated sensor anomaly detection.',
+  'Investigate tri-layer filtration concepts combining physical strainers, carbon, and electrospun membranes.',
+  'Provide accessible scientific documentation for research collaborators and hackathon evaluators.'
+];
+---
+
+<Layout 
+  title="About & Team — Aegis H2O Research Platform"
+  description="Project background, vision, team Super Clusters, and institution details for Aegis H2O at Rathinam Global Deemed-to-be University."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">ABOUT AEGIS H2O</span>
+      <h1 class="page-title">Research Project & Team Super Clusters</h1>
+      <p class="page-desc">
+        Aegis H2O is an AI + IoT water monitoring and filtration research initiative developed at Rathinam Global Deemed-to-be University.
+      </p>
+    </div>
+  </div>
+
+  <!-- SECTION 1: PROJECT BACKGROUND & PROBLEM CONTEXT -->
+  <section class="section">
+    <div class="container grid-2-col">
+      <div class="card-box reveal-on-scroll">
+        <h2 class="card-box-title">Project Background</h2>
+        <p>
+          Water quality monitoring remains a critical global engineering challenge. Traditional water management infrastructure relies on periodic manual sampling and laboratory testing, introducing significant delay between potential contamination events and actionable public health response.
+        </p>
+        <p>
+          The <strong>Aegis H2O</strong> project was conceived to explore how low-cost microcontrollers, electrochemical sensors, optical turbidity meters, and machine learning models can be combined into a continuous, real-time research platform.
+        </p>
+      </div>
+
+      <div class="card-box reveal-on-scroll">
+        <h2 class="card-box-title">Problem Context</h2>
+        <p>
+          Single-parameter monitoring (such as measuring pH alone) fails to provide a comprehensive picture of water quality. Industrial effluents, agricultural runoff, and pipeline corrosion induce complex multi-parameter shifts across conductivity (TDS), optical clarity (turbidity), and hydrogen ion levels.
+        </p>
+        <p>
+          Furthermore, physical sensors deployed continuously in fluid environments experience calibration drift, biofouling, and signal noise. Developing software algorithms capable of validating sensor health alongside water quality is a primary focus of our work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: VISION & MISSION -->
+  <section class="section bg-surface">
+    <div class="container grid-2-col">
+      <div class="vision-card reveal-on-scroll">
+        <span class="badge">OUR VISION</span>
+        <h2 class="vm-title">Data-Driven Water Protection</h2>
+        <p>
+          To establish a credible, open-source technological research foundation where IoT edge sensing and machine learning empower real-time water quality intelligence and transparent environmental engineering.
+        </p>
+      </div>
+
+      <div class="vision-card reveal-on-scroll">
+        <span class="badge">OUR MISSION</span>
+        <h2 class="vm-title">Engineering Transparency</h2>
+        <p>
+          To build, test, and document accessible hardware-software water monitoring prototypes, providing reproducible baseline data, clear scientific limitations, and open technical repositories.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: TEAM SUPER CLUSTERS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">RESEARCH TEAM</span>
+        <h2 class="section-title">Team Super Clusters</h2>
+        <p class="section-subtitle">
+          Interdisciplinary engineering researchers collaborating across embedded hardware, machine learning, 3D mechanical CAD, and software architecture.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        {teamMembers.map(member => (
+          <TeamCard {...member} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: INSTITUTION & GOALS -->
+  <section class="section bg-surface">
+    <div class="container grid-2-col">
+      <div class="institution-card reveal-on-scroll">
+        <span class="section-eyebrow">ACADEMIC INSTITUTION</span>
+        <h2 class="card-box-title">Rathinam Global Deemed-to-be University</h2>
+        <p>
+          Aegis H2O is conducted under the academic and research framework of <strong>Rathinam Global Deemed-to-be University</strong>. The university provides an environment for interdisciplinary technological innovation, supporting student research teams in hackathons, engineering competitions, and scientific development.
+        </p>
+        <div class="inst-details">
+          <div><strong>Department:</strong> School of Engineering & Technology</div>
+          <div><strong>Focus:</strong> AI, IoT, Environmental Robotics & Water Engineering</div>
+        </div>
+      </div>
+
+      <div class="goals-card reveal-on-scroll">
+        <span class="section-eyebrow">PROJECT OBJECTIVES</span>
+        <h2 class="card-box-title">Primary Goals</h2>
+        <ul class="goals-list">
+          {projectGoals.map(goal => (
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{goal}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .page-title {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-desc {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+  }
+
+  .grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .grid-2-col {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .card-box {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+  }
+
+  .card-box-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: 1rem;
+  }
+
+  .vision-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+
+  .vm-title {
+    font-size: var(--font-size-2xl);
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .institution-card, .goals-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+
+  .inst-details {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .goals-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .goals-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .goals-list svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+</style>

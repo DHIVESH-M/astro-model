@@ -1,0 +1,518 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FiltrationDiagram from '../components/FiltrationDiagram.astro';
+
+const parametersTable = [
+  {
+    param: 'pH (Hydrogen Ion)',
+    unit: 'pH Units (0-14)',
+    range: '6.5 - 8.5 (Neutral)',
+    method: 'Glass Electrode Probe + Op-Amp',
+    relevance: 'Indicates acidity/alkalinity; essential metric for chemical corrosion and biological balance.'
+  },
+  {
+    param: 'TDS (Total Dissolved Solids)',
+    unit: 'ppm / mg/L',
+    range: '50 - 500 ppm',
+    method: 'Dual-Electrode AC Conductivity',
+    relevance: 'Measures total dissolved inorganic ion concentration (calcium, magnesium, chloride).'
+  },
+  {
+    param: 'Turbidity',
+    unit: 'NTU (Nephelometric)',
+    range: '0 - 5.0 NTU',
+    method: '90° Near-IR Optical Scattering',
+    relevance: 'Quantifies light scattering caused by suspended micro-particulates, clay, or algae.'
+  },
+  {
+    param: 'Flow Rate',
+    unit: 'Liters / min (LPM)',
+    range: '1.0 - 30.0 LPM',
+    method: 'Hall-Effect Turbine Pulse Train',
+    relevance: 'Evaluates fluid dynamic throughput; vital for calculating detention time across filter beds.'
+  },
+  {
+    param: 'Photodiode Response',
+    unit: 'Raw ADC / % Transmittance',
+    range: 'Relative Optical Scale',
+    method: 'Direct Spectral Phototransistor',
+    relevance: 'Provides secondary optical clarity verification across specific wavelength bands.'
+  }
+];
+
+const researchSections = [
+  { id: 'objectives', title: '1. Research Objectives' },
+  { id: 'problem', title: '2. Problem Definition' },
+  { id: 'parameters', title: '3. Water Parameters' },
+  { id: 'sensors', title: '4. Sensor Technology' },
+  { id: 'datacollection', title: '5. Data Collection' },
+  { id: 'dataset', title: '6. Dataset Preparation' },
+  { id: 'ml-workflow', title: '7. Machine Learning Workflow' },
+  { id: 'evaluation', title: '8. Model Evaluation' },
+  { id: 'filtration', title: '9. Filtration Concept' },
+  { id: 'limitations', title: '10. Limitations' },
+  { id: 'future', title: '11. Future Scope' }
+];
+---
+
+<Layout 
+  title="Research & Methodology — Aegis H2O Scientific Hub"
+  description="Comprehensive research parameters, sensor hardware specs, machine learning evaluation, and 3-stage filtration design for Aegis H2O."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">SCIENTIFIC DOCUMENTATION</span>
+      <h1 class="page-title">Research & Methodology</h1>
+      <p class="page-desc">
+        A transparent, academically structured overview of Aegis H2O research objectives, water parameters, sensor interfaces, machine learning models, and filtration concepts.
+      </p>
+    </div>
+  </div>
+
+  <div class="container research-layout">
+    <!-- STICKY TABLE OF CONTENTS NAV -->
+    <aside class="research-toc">
+      <div class="toc-card">
+        <h3 class="toc-title">On This Page</h3>
+        <nav aria-label="Research page sections">
+          <ul class="toc-list">
+            {researchSections.map((s) => (
+              <li><a href={`#${s.id}`} class="toc-link">{s.title}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- MAIN RESEARCH CONTENT -->
+    <article class="research-body">
+      <!-- 1. OBJECTIVES -->
+      <section id="objectives" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 01</span>
+        <h2>1. Research Objectives</h2>
+        <p>
+          The Aegis H2O project establishes a continuous, sensor-driven technological platform for environmental water monitoring and filtration research.
+        </p>
+        <ul>
+          <li><strong>Continuous High-Frequency Sensing:</strong> Eliminate sampling lag by deploying multi-parameter sensor arrays connected to edge microcontrollers.</li>
+          <li><strong>Algorithmic Validation:</strong> Develop noise-reduction algorithms and machine learning models to identify sensor faults and water quality anomalies.</li>
+          <li><strong>Modular Filtration Research:</strong> Conceptualize physical and chemical separation architectures incorporating mechanical strainers, activated carbon, and electrospun nanofiber membranes.</li>
+        </ul>
+      </section>
+
+      <!-- 2. PROBLEM DEFINITION -->
+      <section id="problem" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 02</span>
+        <h2>2. Problem Definition</h2>
+        <p>
+          Traditional municipal and industrial water monitoring relies heavily on discrete manual sampling. This approach exhibits fundamental engineering limitations:
+        </p>
+        <div class="problem-box">
+          <div class="problem-item">
+            <strong>Intermittent Visibility:</strong> Contamination spikes occurring between sampling intervals pass undetected until downstream impacts emerge.
+          </div>
+          <div class="problem-item">
+            <strong>Sensor Noise & Fouling:</strong> Continuous immersion subjects hardware probes to biofouling, signal drift, and electrical interference.
+          </div>
+          <div class="problem-item">
+            <strong>Single-Variable Blindspots:</strong> Evaluating parameters in isolation overlooks complex chemical interactions across pH, conductivity, and optical clarity.
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. PARAMETERS TABLE -->
+      <section id="parameters" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 03</span>
+        <h2>3. Water Quality Parameters</h2>
+        <p>
+          Aegis H2O tracks five core quantitative metrics confirmed by project specifications.
+        </p>
+        <div class="table-container">
+          <table class="research-table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Target Units</th>
+                <th>Standard Range</th>
+                <th>Measurement Method</th>
+                <th>Research Relevance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {parametersTable.map(row => (
+                <tr>
+                  <td><strong>{row.param}</strong></td>
+                  <td><code>{row.unit}</code></td>
+                  <td>{row.range}</td>
+                  <td>{row.method}</td>
+                  <td>{row.relevance}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. SENSOR TECHNOLOGY -->
+      <section id="sensors" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 04</span>
+        <h2>4. Sensor Technology & Interface</h2>
+        <p>
+          Sensor probes interface with the ESP32 microcontroller via specialized signal conditioning operational amplifiers:
+        </p>
+        <div class="sensor-spec-grid">
+          <div class="spec-card">
+            <h4>pH Signal Amplification</h4>
+            <p>Glass electrode generates microvolt potential differences ($mV$) proportional to hydrogen ion activity. An Op-Amp buffer boosts signal levels to match the $0-3.3V$ ADC input range.</p>
+          </div>
+          <div class="spec-card">
+            <h4>AC TDS Driving Circuit</h4>
+            <p>Direct DC current induces probe polarization and electrolysis. The TDS module applies a low-frequency AC drive voltage to sample solution conductivity accurately.</p>
+          </div>
+          <div class="spec-card">
+            <h4>Optical Turbidity Transceiver</h4>
+            <p>Infrared LED (850nm) combined with a phototransistor detector measures scattered light intensity, producing inverse analog voltage curves relative to turbidity.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. DATA COLLECTION -->
+      <section id="datacollection" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 05</span>
+        <h2>5. Data Collection Strategy</h2>
+        <p>
+          The ESP32 microcontroller executes high-frequency ADC sampling (100 Hz per channel). Local core buffer routines calculate 1-second rolling averages to filter electrical power line ripple before packing JSON telemetry payloads transmitted via WiFi.
+        </p>
+      </section>
+
+      <!-- 6. DATASET PREPARATION -->
+      <section id="dataset" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 06</span>
+        <h2>6. Dataset Preparation & Preprocessing</h2>
+        <p>
+          Raw sensor streams undergo z-score normalization (z = (x - &mu;) / &sigma;) and temporal derivative calculations. Historical baseline datasets are annotated with synthetic anomaly injections (sensor disconnects, chemical step changes) to train classification models.
+        </p>
+      </section>
+
+      <!-- 7. ML WORKFLOW -->
+      <section id="ml-workflow" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 07</span>
+        <h2>7. Machine Learning Workflow</h2>
+        <p>
+          Evaluated supervised algorithms (Random Forest, SVM, XGBoost) process feature vectors to classify input samples into water status categories and assign anomaly probability confidence scores.
+        </p>
+      </section>
+
+      <!-- 8. MODEL EVALUATION -->
+      <section id="evaluation" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 08</span>
+        <h2>8. Model Evaluation Framework</h2>
+        <p>
+          Classification models are evaluated using standard quantitative statistical metrics:
+        </p>
+        <div class="eval-metrics">
+          <div class="metric-box">
+            <span class="metric-name">Precision</span>
+            <span class="metric-formula">Precision = TP / (TP + FP)</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-name">Recall / Sensitivity</span>
+            <span class="metric-formula">Recall = TP / (TP + FN)</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-name">F1-Score</span>
+            <span class="metric-formula">F1 = 2 &times; (Prec &times; Rec) / (Prec + Rec)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. FILTRATION CONCEPT -->
+      <section id="filtration" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 09</span>
+        <h2>9. Tri-Layer Filtration Research Concept</h2>
+        <p>
+          Presentation of the proposed physical and chemical treatment cartridge architecture.
+        </p>
+        <FiltrationDiagram />
+      </section>
+
+      <!-- 10. LIMITATIONS -->
+      <section id="limitations" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 10</span>
+        <h2>10. Scientific Limitations</h2>
+        <div class="limitation-alert">
+          <h4>Honest Academic Transparency</h4>
+          <ul>
+            <li><strong>Prototypes, Not Safety Certifiers:</strong> Aegis H2O hardware nodes and ML software models are research prototypes. They do not certify drinking water safety without accredited laboratory microbial testing.</li>
+            <li><strong>Sensor Fouling Drift:</strong> Continuous long-term immersion without manual probe cleaning leads to measurement calibration drift.</li>
+            <li><strong>Unregulated Hydraulic Flow:</strong> Variations in inlet water pressure directly impact turbidity readings and filter contact times.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 11. FUTURE RESEARCH -->
+      <section id="future" class="research-block reveal-on-scroll">
+        <span class="block-tag">SECTION 11</span>
+        <h2>11. Future Research Directions</h2>
+        <p>
+          Team Super Clusters at Rathinam Global Deemed-to-be University aims to expand research through:
+        </p>
+        <ul>
+          <li>Differential pressure transducer integration across filter chambers for automated clogging detection.</li>
+          <li>Deploying edge TensorFlow Lite micro models directly onto ESP32 hardware.</li>
+          <li>Testing physical electrospun nanofiber membrane prototypes in controlled laboratory environments.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .page-title {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-desc {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+  }
+
+  .research-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+
+  @media (min-width: 1024px) {
+    .research-layout {
+      grid-template-columns: 260px 1fr;
+    }
+  }
+
+  /* TOC Sidebar */
+  .research-toc {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .research-toc {
+      display: block;
+    }
+  }
+
+  .toc-card {
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+  }
+
+  .toc-title {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .toc-link {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    transition: color 0.15s ease;
+    display: block;
+    padding: 0.2rem 0;
+  }
+
+  .toc-link:hover {
+    color: var(--color-primary);
+  }
+
+  /* Research Body */
+  .research-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .research-block {
+    scroll-margin-top: calc(var(--header-height) + 2rem);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .block-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .research-block h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 1rem;
+  }
+
+  .research-block p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .research-block ul {
+    margin-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+  }
+
+  .problem-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .problem-item {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .problem-item strong {
+    color: var(--color-text-primary);
+  }
+
+  /* Research Table */
+  .table-container {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .research-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    text-align: left;
+  }
+
+  .research-table th {
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    font-weight: 700;
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .research-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+  }
+
+  .sensor-spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .spec-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+  }
+
+  .spec-card h4 {
+    font-size: var(--font-size-base);
+    margin-bottom: 0.5rem;
+  }
+
+  .spec-card p {
+    font-size: var(--font-size-xs);
+    margin-bottom: 0;
+  }
+
+  .eval-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .metric-box {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .metric-name {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .metric-formula {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    color: var(--color-primary);
+  }
+
+  .limitation-alert {
+    background-color: #FEF2F2;
+    border: 1px solid #FCA5A5;
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+  }
+
+  .limitation-alert h4 {
+    color: #991B1B;
+    margin-bottom: 0.75rem;
+  }
+
+  .limitation-alert ul {
+    margin-left: 1.25rem;
+    color: #7F1D1D;
+  }
+</style>

@@ -1,0 +1,226 @@
+---
+const layers = [
+  {
+    step: 'Stage 01',
+    name: 'Stainless Steel Mesh Filter',
+    type: 'Physical Particle Separation',
+    porosity: '~100 - 150 µm Mesh',
+    role: 'Captures coarse debris, suspended particulates, and macro sediment prior to micro-filtration.',
+    color: '#64748B'
+  },
+  {
+    step: 'Stage 02',
+    name: 'Activated Carbon Layer',
+    type: 'Chemical Adsorption',
+    porosity: 'High Surface Area Porous Media',
+    role: 'Adsorbs volatile organic compounds (VOCs), residual chlorine, taste components, and odors.',
+    color: '#0F172A'
+  },
+  {
+    step: 'Stage 03',
+    name: 'Nanofiber Membrane',
+    type: 'Sub-Micron Physical Barrier Concept',
+    porosity: '< 0.1 µm Electrospun Fibers',
+    role: 'Theoretical barrier for ultra-fine suspended matter and micro-scale particulates under scientific investigation.',
+    color: '#00A896'
+  }
+];
+---
+
+<div class="filtration-visualizer reveal-on-scroll">
+  <div class="visualizer-header">
+    <div class="header-tag">Research Filtration Architecture</div>
+    <h3 class="visualizer-title">3-Stage Physical & Chemical Separation Model</h3>
+    <p class="visualizer-desc">
+      Aegis H2O evaluates a modular tri-layer filtration design combining mechanical strainers, carbon adsorption, and electrospun membrane concepts.
+    </p>
+  </div>
+
+  <div class="layers-container">
+    {layers.map((layer, index) => (
+      <div class="filtration-layer-card" style={`--layer-accent: ${layer.color}`}>
+        <div class="layer-badge-col">
+          <span class="layer-step">{layer.step}</span>
+          <div class="layer-icon-mesh" style={`background-color: ${layer.color}15; border-color: ${layer.color}`}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={layer.color} stroke-width="2">
+              {index === 0 && <path d="M4 4h16v16H4zM4 10h16M4 15h16M10 4v16M15 4v16"/>}
+              {index === 1 && <circle cx="12" cy="12" r="9"/>}
+              {index === 2 && <path d="M2 12c4-4 8 4 12 0s8 4 10 0"/>}
+            </svg>
+          </div>
+        </div>
+
+        <div class="layer-details">
+          <div class="layer-meta">
+            <span class="layer-type">{layer.type}</span>
+            <span class="layer-porosity">{layer.porosity}</span>
+          </div>
+          <h4 class="layer-name">{layer.name}</h4>
+          <p class="layer-role">{layer.role}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="filtration-disclaimer">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span>
+      <strong>Scientific Disclaimer:</strong> This filtration design represents an academic research concept. Aegis H2O does not claim or guarantee complete contaminant removal or drinking-water safety without certified laboratory validation.
+    </span>
+  </div>
+</div>
+
+<style>
+  .filtration-visualizer {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .header-tag {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .visualizer-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 0.5rem;
+  }
+
+  .visualizer-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+  }
+
+  .layers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filtration-layer-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--layer-accent);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  @media (min-width: 640px) {
+    .filtration-layer-card {
+      grid-template-columns: 120px 1fr;
+      align-items: center;
+    }
+  }
+
+  .filtration-layer-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .layer-badge-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .layer-badge-col {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+
+  .layer-step {
+    font-size: 0.7rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .layer-icon-mesh {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .layer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .layer-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: var(--font-size-xs);
+  }
+
+  .layer-type {
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .layer-porosity {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .layer-name {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .layer-role {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+  }
+
+  .filtration-disclaimer {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    background-color: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: var(--radius-md);
+    padding: 0.875rem 1rem;
+  }
+
+  .filtration-disclaimer svg {
+    color: #D97706;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .filtration-disclaimer strong {
+    color: #92400E;
+  }
+</style>

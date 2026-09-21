@@ -1,0 +1,195 @@
+---
+import Logo from './Logo.astro';
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <Logo size={32} />
+        <p class="brand-desc">
+          Aegis H2O explores sensor-based water quality monitoring, machine learning data validation, and multi-stage filtration research at Rathinam Global Deemed-to-be University.
+        </p>
+        <div class="institution-tag">
+          <span class="tag-label">Research Institution:</span>
+          <strong>Rathinam Global Deemed-to-be University</strong>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About & Team</a></li>
+            <li><a href="/how-it-works">How It Works</a></li>
+            <li><a href="/research">Research & Parameters</a></li>
+            <li><a href="/business-model">Business Model Canvas</a></li>
+            <li><a href="/blog">Research Blog</a></li>
+            <li><a href="/contact">Project Links & Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="col-title">Research Topics</h4>
+          <ul class="footer-links">
+            <li><a href="/research#parameters">Water Parameters (pH, TDS)</a></li>
+            <li><a href="/research#sensors">Sensors & ESP32</a></li>
+            <li><a href="/research#ml-workflow">ML Classification Pipeline</a></li>
+            <li><a href="/research#filtration">3-Layer Filtration Design</a></li>
+            <li><a href="/research#limitations">Scientific Limitations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="col-title">Project Resources</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="https://github.com/Super-Clusters-sih/Aegis-H2O.git" target="_blank" rel="noopener noreferrer" class="ext-link">
+                GitHub Repository
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/Super-Clusters-sih/Aegis-H2O-3D.git" target="_blank" rel="noopener noreferrer" class="ext-link">
+                3D CAD Models Repo
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://aegis-h2-o.vercel.app/" target="_blank" rel="noopener noreferrer" class="ext-link">
+                Live App Deployment
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        © {new Date().getFullYear()} Aegis H2O Research Project. Developed by Team <strong>Super Clusters</strong>.
+      </div>
+      <div class="disclaimer">
+        Scientific Disclaimer: Research prototype for academic demonstration. Does not certify drinking safety without certified lab testing.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-8);
+    margin-top: var(--space-16);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  @media (min-width: 900px) {
+    .footer-top {
+      grid-template-columns: 1.2fr 2fr;
+    }
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .brand-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 400px;
+  }
+
+  .institution-tag {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    background-color: var(--color-bg);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    display: inline-block;
+    max-width: fit-content;
+  }
+
+  .institution-tag strong {
+    color: var(--color-text-primary);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+  }
+
+  .col-title {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .footer-links a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    transition: color 0.15s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .ext-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: var(--space-6);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .copyright strong {
+    color: var(--color-text-primary);
+  }
+
+  .disclaimer {
+    font-style: italic;
+    max-width: 500px;
+  }
+</style>

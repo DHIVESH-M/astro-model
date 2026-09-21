@@ -1,0 +1,195 @@
+---
+interface Props {
+  blockNumber: string;
+  title: string;
+  subtitle: string;
+  items: Array<{
+    name: string;
+    description: string;
+    status: 'Confirmed' | 'In Development' | 'Proposed' | 'Future';
+  }>;
+  icon: string;
+  gridArea?: string;
+}
+
+const { blockNumber, title, subtitle, items, icon, gridArea } = Astro.props;
+
+const statusColors: Record<string, { bg: string; text: string; border: string }> = {
+  'Confirmed': { bg: '#ECFDF5', text: '#065F46', border: '#A7F3D0' },
+  'In Development': { bg: '#EFF6FF', text: '#1E40AF', border: '#BFDBFE' },
+  'Proposed': { bg: '#FFFBEB', text: '#92400E', border: '#FDE68A' },
+  'Future': { bg: '#F8FAFC', text: '#475569', border: '#E2E8F0' }
+};
+---
+
+<div class="canvas-block" style={gridArea ? `grid-area: ${gridArea};` : ''}>
+  <div class="block-header">
+    <div class="block-num-icon">
+      <span class="block-num">{blockNumber}</span>
+      <div class="block-icon">
+        {icon === 'partners' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        )}
+        {icon === 'activities' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        )}
+        {icon === 'resources' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        )}
+        {icon === 'value' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        )}
+        {icon === 'relationships' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        )}
+        {icon === 'channels' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        )}
+        {icon === 'segments' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+        )}
+        {icon === 'cost' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="10" y1="12" x2="18" y2="18"/></svg>
+        )}
+        {icon === 'revenue' && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        )}
+      </div>
+    </div>
+    <div class="block-titles">
+      <h3 class="block-title">{title}</h3>
+      <span class="block-sub">{subtitle}</span>
+    </div>
+  </div>
+
+  <div class="block-content">
+    {items.map(item => {
+      const colors = statusColors[item.status] || statusColors['Future'];
+      return (
+        <div class="item-card">
+          <div class="item-top">
+            <span class="item-name">{item.name}</span>
+            <span class="status-badge" style={`background-color: ${colors.bg}; color: ${colors.text}; border-color: ${colors.border}`}>
+              {item.status}
+            </span>
+          </div>
+          <p class="item-desc">{item.description}</p>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .canvas-block {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.2s ease;
+    height: 100%;
+  }
+
+  .canvas-block:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .block-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .block-num-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .block-num {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    font-weight: 800;
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    padding: 0.15rem 0.4rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .block-icon {
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+  }
+
+  .block-titles {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+
+  .block-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .block-sub {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .block-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .item-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .item-name {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .status-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--radius-full);
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .item-desc {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,360 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+const projectLinks = [
+  {
+    title: 'Primary Aegis H2O Repository',
+    category: 'Source Code',
+    url: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
+    description: 'Complete codebase for firmware, signal conditioning, machine learning scripts, and web interfaces.',
+    icon: 'github'
+  },
+  {
+    title: '3D CAD Models Repository',
+    category: 'Hardware Assets',
+    url: 'https://github.com/Super-Clusters-sih/Aegis-H2O-3D.git',
+    description: 'Open-source STL & STEP files for fluid sampling manifolds, sensor housing chambers, and filtration mounts.',
+    icon: 'cube'
+  },
+  {
+    title: 'Live Application Deployment',
+    category: 'Web Experience',
+    url: 'https://aegis-h2-o.vercel.app/',
+    description: 'Live deployment platform hosted on Vercel for real-time telemetry inspection and dashboard demo.',
+    icon: 'external'
+  }
+];
+---
+
+<Layout 
+  title="Project Links & Contact — Aegis H2O"
+  description="Verified project repositories, CAD model downloads, live app links, and research collaboration contact for Aegis H2O."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">RESOURCES & CONTACT</span>
+      <h1 class="page-title">Project Links & Collaboration</h1>
+      <p class="page-desc">
+        Access official open-source repositories, 3D printable CAD models, live project deployments, and reach out to Team Super Clusters.
+      </p>
+    </div>
+  </div>
+
+  <!-- SECTION 1: VERIFIED PROJECT LINKS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">VERIFIED REPOSITORIES</span>
+        <h2 class="section-title">Official Project Links</h2>
+        <p class="section-subtitle">
+          All Aegis H2O source code, 3D mechanical models, and live app deployments are openly available for research evaluation.
+        </p>
+      </div>
+
+      <div class="links-grid">
+        {projectLinks.map(link => (
+          <div class="link-card reveal-on-scroll">
+            <div class="link-header">
+              <span class="badge">{link.category}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="link-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </div>
+
+            <h3 class="link-title">{link.title}</h3>
+            <p class="link-desc">{link.description}</p>
+            
+            <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-btn">
+              Visit Resource
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: COLLABORATION FORM & INSTITUTION DETAILS -->
+  <section class="section bg-surface">
+    <div class="container grid-contact">
+      <!-- Contact Form -->
+      <div class="contact-form-card reveal-on-scroll">
+        <h2 class="form-title">Research Inquiry & Feedback</h2>
+        <p class="form-subtitle">Have questions for team Super Clusters or interested in academic collaboration? Send us a message.</p>
+
+        <form class="contact-form" action="https://formsubmit.co/dhivesh4516c@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Aegis H2O Research Inquiry" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="Dr. Jane Doe" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="jane.doe@university.edu" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="affiliation">Academic / Professional Institution</label>
+            <input type="text" id="affiliation" name="institution" placeholder="University / Organization Name" />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Inquiry Category</label>
+            <select id="subject" name="category">
+              <option value="Research Collaboration">Research Collaboration</option>
+              <option value="Hackathon Evaluation">Hackathon Evaluation / Judging</option>
+              <option value="Technical Question">Technical Question (Sensors / ML / CAD)</option>
+              <option value="General Feedback">General Feedback</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Share your inquiry or feedback..."></textarea>
+          </div>
+
+          <Button type="submit" variant="primary" size="md">
+            Submit Research Inquiry
+          </Button>
+        </form>
+      </div>
+
+      <!-- Institution Info Box -->
+      <div class="inst-info-box reveal-on-scroll">
+        <div class="info-card">
+          <span class="section-eyebrow">RESEARCH HQ</span>
+          <h3 class="info-heading">Institution Details</h3>
+          <p class="info-text">
+            Aegis H2O is developed by team <strong>Super Clusters</strong> at Rathinam Global Deemed-to-be University.
+          </p>
+
+          <div class="info-list">
+            <div class="info-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <strong>Location:</strong><br />
+                Rathinam Techzone Campus, Eachanari, Coimbatore, Tamil Nadu 641021
+              </div>
+            </div>
+
+            <div class="info-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <div>
+                <strong>Institution:</strong><br />
+                Rathinam Global Deemed-to-be University
+              </div>
+            </div>
+
+            <div class="info-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <div>
+                <strong>Development Team:</strong><br />
+                Team Super Clusters
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .page-title {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-desc {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .link-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+  }
+
+  .link-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .link-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+
+  .link-icon {
+    color: var(--color-primary);
+  }
+
+  .link-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .link-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: var(--space-6);
+  }
+
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-top: auto;
+  }
+
+  .grid-contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .grid-contact {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  .contact-form-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+
+  .form-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+    font-size: var(--font-size-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: inherit;
+    transition: border-color 0.15s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+  }
+
+  .inst-info-box .info-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+
+  .info-heading {
+    font-size: var(--font-size-xl);
+    margin-bottom: 0.75rem;
+  }
+
+  .info-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 0.875rem;
+    align-items: flex-start;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .info-item svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+</style>

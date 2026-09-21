@@ -1,0 +1,169 @@
+---
+const steps = [
+  {
+    step: '01',
+    title: 'Water Input',
+    subtitle: 'Sample Acquisition',
+    desc: 'Fluid enters the monitoring chamber through controlled flow channels.',
+    icon: 'droplet'
+  },
+  {
+    step: '02',
+    title: 'Sensor Collection',
+    subtitle: 'Multi-Parameter Probes',
+    desc: 'pH, TDS, Turbidity, Flow Rate, and Photodiode sensors extract live analog signals.',
+    icon: 'activity'
+  },
+  {
+    step: '03',
+    title: 'ESP32 Microcontroller',
+    subtitle: 'Edge Signal Processing',
+    desc: 'Dual-core MCU converts ADC values, applies calibration factors, and formats payloads.',
+    icon: 'cpu'
+  },
+  {
+    step: '04',
+    title: 'Data Validation',
+    subtitle: 'Noise & Outlier Filtering',
+    desc: 'Kalman filtering and threshold bounds check ensure raw reading integrity.',
+    icon: 'check-circle'
+  },
+  {
+    step: '05',
+    title: 'Machine Learning',
+    subtitle: 'Quality Classification',
+    desc: 'Pre-trained classification models evaluate parameter combinations for anomaly detection.',
+    icon: 'layers'
+  },
+  {
+    step: '06',
+    title: 'Backend API Stream',
+    subtitle: 'Cloud Ingestion',
+    desc: 'REST API & WebSocket stream ingest encrypted sensor telemetry for storage.',
+    icon: 'cloud'
+  },
+  {
+    step: '07',
+    title: 'Monitoring Dashboard',
+    subtitle: 'Real-time Analytics',
+    desc: 'Visual analytics interface presents live metrics, alerts, and historical trends.',
+    icon: 'layout'
+  }
+];
+---
+
+<div class="workflow-wrapper reveal-on-scroll">
+  <div class="workflow-grid">
+    {steps.map((s, index) => (
+      <div class="workflow-card" data-step={index + 1}>
+        <div class="workflow-step-num">{s.step}</div>
+        <div class="workflow-content">
+          <span class="workflow-subtitle">{s.subtitle}</span>
+          <h3 class="workflow-title">{s.title}</h3>
+          <p class="workflow-desc">{s.desc}</p>
+        </div>
+        {index < steps.length - 1 && (
+          <div class="workflow-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .workflow-wrapper {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8) var(--space-6);
+  }
+
+  .workflow-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  .workflow-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .workflow-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .workflow-step-num {
+    font-size: var(--font-size-xs);
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .workflow-subtitle {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent-teal);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .workflow-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .workflow-desc {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+  }
+
+  .workflow-arrow {
+    display: none;
+    color: var(--color-text-muted);
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: var(--color-bg);
+    border-radius: 50%;
+  }
+
+  @media (min-width: 1024px) {
+    .workflow-card:not(:nth-child(4n)) .workflow-arrow {
+      display: flex;
+    }
+  }
+</style>

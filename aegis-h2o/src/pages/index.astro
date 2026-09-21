@@ -1,0 +1,573 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import TechnologyCard from '../components/TechnologyCard.astro';
+import SystemWorkflow from '../components/SystemWorkflow.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const featuredPosts = posts.slice(0, 3);
+
+const techItems = [
+  {
+    title: 'ESP32 Microcontroller',
+    category: 'Hardware Core',
+    description: 'Dual-core 32-bit MCU managing real-time ADC sampling, sensor signal conditioning, and secure telemetry transmission.',
+    specs: '240 MHz Dual-Core | WiFi / BLE',
+    iconName: 'esp32' as const
+  },
+  {
+    title: 'pH Sensor Probe',
+    category: 'Electrochemical Probe',
+    description: 'Measures hydrogen ion concentration to evaluate acidity or alkalinity of liquid samples.',
+    specs: 'Range: 0.0 - 14.0 pH | Precision: ±0.1',
+    iconName: 'ph' as const
+  },
+  {
+    title: 'TDS Conductivity Probe',
+    category: 'Conductivity Metric',
+    description: 'Calculates Total Dissolved Solids concentration by measuring electrical conductivity under temperature compensation.',
+    specs: 'Range: 0 - 1000 ppm | AC Signal Drive',
+    iconName: 'tds' as const
+  },
+  {
+    title: 'Turbidity Sensor',
+    category: 'Optical Sensing',
+    description: 'Near-infrared optical sensor evaluating light scattering from suspended particulates in fluid samples.',
+    specs: 'Range: 0 - 4550 NTU | IR 850nm',
+    iconName: 'turbidity' as const
+  },
+  {
+    title: 'Flow Rate Sensor',
+    category: 'Fluid Dynamics',
+    description: 'Hall-effect turbine sensor providing pulse train output proportional to volumetric water throughput.',
+    specs: '1 - 30 L/min | Hall-Effect Interrupt',
+    iconName: 'flow' as const
+  },
+  {
+    title: 'Photodiode Reading',
+    category: 'Optical Spectroscopy',
+    description: 'Photodetection circuit evaluating light transmission across fluid samples for secondary clarity metrics.',
+    specs: 'Spectral Peak: 550nm | Op-Amp Gain',
+    iconName: 'photodiode' as const
+  },
+  {
+    title: 'Machine Learning Model',
+    category: 'Software Analytics',
+    description: 'Supervised classification models (Random Forest / SVM) evaluating multi-sensor feature vectors for anomaly detection.',
+    specs: 'Multi-Feature Vector | Scikit-Learn',
+    iconName: 'ml' as const
+  },
+  {
+    title: 'Backend API & Stream',
+    category: 'Cloud Infrastructure',
+    description: 'RESTful API and WebSocket telemetry service processing incoming sensor payloads and broadcasting to dashboard.',
+    specs: 'JSON Telemetry | Real-Time Endpoint',
+    iconName: 'api' as const
+  }
+];
+
+const researchHighlights = [
+  {
+    title: 'Continuous Water Monitoring',
+    desc: 'Investigating high-frequency multi-parameter sensor arrays for continuous environmental data collection without manual sampling lag.'
+  },
+  {
+    title: 'Sensor Hardware & Calibration',
+    desc: 'Developing digital calibration routines and temperature-compensation curves to maintain signal fidelity across long-term deployments.'
+  },
+  {
+    title: 'Machine Learning Classification',
+    desc: 'Applying multi-variable classification models to detect anomalous sensor drift, stuck-at faults, and potential water quality shifts.'
+  },
+  {
+    title: 'Tri-Layer Filtration Concepts',
+    desc: 'Conceptualizing physical and chemical separation architectures incorporating mechanical mesh strainers, carbon beds, and electrospun membranes.'
+  }
+];
+---
+
+<Layout 
+  title="Aegis H2O — AI + IoT Water Monitoring & Filtration Research"
+  description="Official technology research platform for Aegis H2O by team Super Clusters at Rathinam Global Deemed-to-be University."
+>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-text-col">
+        <span class="section-eyebrow">AI + IoT WATER TECHNOLOGY</span>
+        <h1 class="hero-title">Intelligent Water Monitoring Through AI and IoT</h1>
+        <p class="hero-desc">
+          Aegis H2O explores sensor-based water monitoring, machine learning, and filtration research to support data-driven insights into water quality and system performance.
+        </p>
+
+        <div class="hero-cta-group">
+          <Button href="/research" variant="primary" size="lg">
+            Explore Research
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </Button>
+
+          <Button href="/how-it-works" variant="secondary" size="lg">
+            How It Works
+          </Button>
+        </div>
+
+        <div class="hero-badge-bar">
+          <span class="badge">Research Project</span>
+          <span class="badge">Rathinam Global Deemed-to-be University</span>
+          <span class="badge">Team Super Clusters</span>
+        </div>
+      </div>
+
+      <!-- HERO TECHNICAL SVG VISUAL -->
+      <div class="hero-visual-col">
+        <div class="hero-visual-card">
+          <div class="visual-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="visual-title-text">Aegis H2O Real-Time System Schematic</span>
+          </div>
+          
+          <div class="visual-svg-container">
+            <svg viewBox="0 0 500 340" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+              <!-- Background Grid Lines -->
+              <path d="M0 50H500M0 100H500M0 150H500M0 200H500M0 250H500M0 300H500" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4"/>
+              <path d="M100 0V340M200 0V340M300 0V340M400 0V340" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4"/>
+
+              <!-- Flow Inlet -->
+              <rect x="20" y="140" width="70" height="60" rx="8" fill="#F8FAFC" stroke="#0066CC" stroke-width="2"/>
+              <text x="55" y="170" font-family="Inter" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">Fluid In</text>
+              <text x="55" y="185" font-family="JetBrains Mono" font-size="9" fill="#0066CC" text-anchor="middle">Sample Core</text>
+
+              <!-- Arrow In -->
+              <path d="M90 170H130" stroke="#0066CC" stroke-width="2.5" stroke-dasharray="6 4" class="animated-flow"/>
+              <path d="M125 165L132 170L125 175" fill="#0066CC"/>
+
+              <!-- Sensor Array Chamber -->
+              <rect x="132" y="110" width="130" height="120" rx="12" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+              <text x="197" y="132" font-family="Inter" font-size="12" font-weight="700" fill="#0F172A" text-anchor="middle">Sensor Cluster</text>
+              
+              <rect x="145" y="145" width="48" height="24" rx="4" fill="#E0F2FE" stroke="#0284C7"/>
+              <text x="169" y="161" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#0369A1" text-anchor="middle">pH / TDS</text>
+
+              <rect x="202" y="145" width="48" height="24" rx="4" fill="#CCFBF1" stroke="#00A896"/>
+              <text x="226" y="161" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#0F766E" text-anchor="middle">Turbidity</text>
+
+              <rect x="145" y="180" width="105" height="24" rx="4" fill="#F1F5F9" stroke="#64748B"/>
+              <text x="197" y="196" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#334155" text-anchor="middle">Flow Rate Sensor</text>
+
+              <!-- Signal line to ESP32 -->
+              <path d="M262 170H300" stroke="#00A896" stroke-width="2.5"/>
+              <path d="M295 165L302 170L295 175" fill="#00A896"/>
+
+              <!-- ESP32 MCU Box -->
+              <rect x="302" y="125" width="90" height="90" rx="10" fill="#0F172A"/>
+              <text x="347" y="155" font-family="Inter" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">ESP32</text>
+              <text x="347" y="172" font-family="JetBrains Mono" font-size="9" fill="#00A896" text-anchor="middle">Dual-Core ADC</text>
+              <text x="347" y="190" font-family="JetBrains Mono" font-size="8" fill="#94A3B8" text-anchor="middle">Telemetry Engine</text>
+
+              <!-- Connection to ML/Cloud -->
+              <path d="M347 215V265H410" stroke="#0066CC" stroke-width="2" stroke-dasharray="4 4"/>
+              
+              <!-- Cloud API / ML Node -->
+              <rect x="410" y="240" width="75" height="50" rx="8" fill="#F0F9FF" stroke="#0284C7" stroke-width="2"/>
+              <text x="447.5" y="263" font-family="Inter" font-size="10" font-weight="700" fill="#0369A1" text-anchor="middle">ML API</text>
+              <text x="447.5" y="278" font-family="JetBrains Mono" font-size="8" fill="#0284C7" text-anchor="middle">Classifier</text>
+
+              <!-- Top Status Pills -->
+              <rect x="300" y="35" width="170" height="32" rx="16" fill="#F8FAFC" stroke="#E2E8F0"/>
+              <circle cx="318" cy="51" r="5" fill="#10B981"/>
+              <text x="330" y="55" font-family="Inter" font-size="10" font-weight="600" fill="#334155">Status: Telemetry Active</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: PROJECT INTRODUCTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Project Introduction</span>
+        <h2 class="section-title">Addressing Water Quality Challenges Through Research</h2>
+        <p class="section-subtitle">
+          Ensuring reliable water monitoring demands continuous data acquisition, edge intelligence, and rigorous engineering principles.
+        </p>
+      </div>
+
+      <div class="intro-grid">
+        <div class="intro-card reveal-on-scroll">
+          <div class="intro-number">01</div>
+          <h3>The Research Problem</h3>
+          <p>
+            Traditional water sampling relies on intermittent manual testing. Delays in laboratory evaluation prevent real-time identification of industrial runoff, chemical shifts, or sensor degradation in liquid distribution channels.
+          </p>
+        </div>
+
+        <div class="intro-card reveal-on-scroll">
+          <div class="intro-number">02</div>
+          <h3>Our Engineering Approach</h3>
+          <p>
+            Aegis H2O combines low-power microcontroller hardware (ESP32), electrochemical and optical sensors (pH, TDS, turbidity, flow), and edge validation algorithms to establish continuous telemetry channels.
+          </p>
+        </div>
+
+        <div class="intro-card reveal-on-scroll">
+          <div class="intro-number">03</div>
+          <h3>Academic Rigor & Transparency</h3>
+          <p>
+            Our platform evaluates machine learning classification models and tri-layer physical filtration concepts with complete scientific transparency, explicitly demarcating empirical data from conceptual designs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: TECHNOLOGY OVERVIEW -->
+  <section class="section bg-surface">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Hardware & Software Architecture</span>
+        <h2 class="section-title">Confirmed Project Components</h2>
+        <p class="section-subtitle">
+          Every sensor and software component in the Aegis H2O architecture is selected for specific measurement capability and reliability.
+        </p>
+      </div>
+
+      <div class="tech-grid">
+        {techItems.map(item => (
+          <TechnologyCard {...item} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: HOW THE SYSTEM WORKS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">System Architecture</span>
+        <h2 class="section-title">7-Step Data Processing Workflow</h2>
+        <p class="section-subtitle">
+          Trace fluid acquisition through sensor sampling, ESP32 edge conditioning, machine learning validation, and dashboard visualization.
+        </p>
+      </div>
+
+      <SystemWorkflow />
+    </div>
+  </section>
+
+  <!-- SECTION 4: RESEARCH HIGHLIGHTS -->
+  <section class="section bg-surface">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Scientific Focus</span>
+        <h2 class="section-title">Core Research Domains</h2>
+        <p class="section-subtitle">
+          Key focus areas under active exploration by Team Super Clusters at Rathinam Global Deemed-to-be University.
+        </p>
+      </div>
+
+      <div class="highlights-grid">
+        {researchHighlights.map((item, idx) => (
+          <div class="highlight-card reveal-on-scroll">
+            <div class="highlight-badge">Area 0{idx + 1}</div>
+            <h3 class="highlight-title">{item.title}</h3>
+            <p class="highlight-desc">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: FEATURED BLOG ARTICLES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Technical Articles</span>
+        <h2 class="section-title">Latest Research & Development Posts</h2>
+        <p class="section-subtitle">
+          In-depth technical articles detailing hardware calibration, machine learning models, and system architecture.
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        {featuredPosts.map(post => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            author={post.data.author}
+            category={post.data.category}
+            readTime={post.data.readTime}
+            slug={post.slug}
+          />
+        ))}
+      </div>
+
+      <div class="center-cta-wrap">
+        <Button href="/blog" variant="outline" size="md">
+          View All Research Articles
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: PROJECT CALL TO ACTION -->
+  <section class="section cta-section">
+    <div class="container cta-container">
+      <div class="cta-content">
+        <span class="section-eyebrow color-white">COLLABORATION & OPEN SOURCE</span>
+        <h2 class="cta-heading">Explore Aegis H2O Project Resources</h2>
+        <p class="cta-desc">
+          Review our open-source codebase, inspect 3D CAD models, or read our complete scientific parameters and research methodology.
+        </p>
+        <div class="cta-buttons">
+          <Button href="https://github.com/Super-Clusters-sih/Aegis-H2O.git" target="_blank" rel="noopener noreferrer" variant="primary" size="lg">
+            GitHub Repository
+          </Button>
+          <Button href="/research" variant="secondary" size="lg">
+            Read Research Documentation
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+    background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .hero-text-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-4);
+    color: var(--color-text-primary);
+  }
+
+  .hero-desc {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+    max-width: 620px;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero-badge-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Hero Visual Card */
+  .hero-visual-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  .visual-header {
+    background-color: var(--color-surface);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot.red { background-color: #EF4444; }
+  .dot.yellow { background-color: #F59E0B; }
+  .dot.green { background-color: #10B981; }
+
+  .visual-title-text {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-left: 0.5rem;
+  }
+
+  .visual-svg-container {
+    padding: 1rem;
+    background-color: #FFFFFF;
+  }
+
+  .hero-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Intro Section Grid */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .intro-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+  }
+
+  .intro-number {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .intro-card h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: 0.5rem;
+  }
+
+  .intro-card p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Tech Grid */
+  .bg-surface {
+    background-color: var(--color-surface);
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Highlights Grid */
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .highlight-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .highlight-badge {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-accent-teal);
+    font-family: var(--font-mono);
+    margin-bottom: 0.5rem;
+  }
+
+  .highlight-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: 0.5rem;
+  }
+
+  .highlight-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Blog Grid */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: var(--space-8);
+  }
+
+  .center-cta-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background-color: var(--color-text-primary);
+    color: var(--color-text-inverse);
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+
+  .cta-container {
+    text-align: center;
+  }
+
+  .cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .color-white {
+    color: var(--color-accent-teal-light) !important;
+  }
+
+  .cta-heading {
+    color: var(--color-text-inverse);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-desc {
+    color: #94A3B8;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-8);
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>
