@@ -4,36 +4,64 @@ import TeamCard from '../components/TeamCard.astro';
 
 const teamMembers = [
   {
-    name: 'Super Clusters Engineering Lead',
-    role: 'Embedded & IoT Architect',
-    responsibilities: 'ESP32 firmware development, hardware signal conditioning, ADC calibration, and sensor bus driver integration.',
-    contribution: 'Designed multi-sensor hardware manifold and low-latency JSON telemetry packaging pipeline.',
-    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
-    initials: 'EL'
-  },
-  {
-    name: 'Super Clusters ML Specialist',
-    role: 'Machine Learning & Data Analyst',
+    name: 'Srinesh G',
+    role: 'Machine Learning Specialist',
+    category: 'ML Work',
+    email: 'srineshg.bam25@rathinam.in',
     responsibilities: 'Feature vector extraction, dataset normalization, model training (Random Forest / SVM), and anomaly thresholding.',
     contribution: 'Evaluated multi-parameter correlation models for water anomaly classification.',
     githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
-    initials: 'ML'
+    initials: 'SG'
   },
   {
-    name: 'Super Clusters CAD & Mechanical Researcher',
-    role: '3D Design & Filtration Specialist',
-    responsibilities: 'Mechanical housing design, fluid channel CAD modeling, and 3-stage physical filtration layer geometry.',
-    contribution: 'Authored open-source 3D printable manifold CAD repositories (`Aegis-H2O-3D`).',
-    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O-3D.git',
-    initials: 'CR'
-  },
-  {
-    name: 'Super Clusters Full-Stack Developer',
-    role: 'Frontend & API Systems Developer',
-    responsibilities: 'Real-time telemetry API routes, WebSocket dashboard integration, and research documentation interface.',
-    contribution: 'Architected responsive web portal and interactive telemetry visualization suite.',
+    name: 'Kabish S',
+    role: 'Machine Learning Analyst',
+    category: 'ML Work',
+    email: 'kabishs.bam25@rathinam.in',
+    responsibilities: 'Sensor dataset preprocessing, statistical noise filtering, and ML anomaly classification model validation.',
+    contribution: 'Developed data cleaning routines and feature vector optimization pipelines for continuous sensor streaming.',
     githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
-    initials: 'FS'
+    initials: 'KS'
+  },
+  {
+    name: 'Dhivesh M',
+    role: 'Lead Systems & UI/UX Specialist',
+    category: 'Designing & Presentation',
+    email: 'dhiveshm.bam25@rathinam.in',
+    responsibilities: 'Web platform architecture, UI/UX interface design, system workflow schematics, and presentation design.',
+    contribution: 'Architected responsive web portal, telemetry visualization interface, and presentation media.',
+    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
+    initials: 'DM'
+  },
+  {
+    name: 'Sarathidev M',
+    role: 'CAD & Presentation Specialist',
+    category: 'Designing & Presentation',
+    email: 'sarathidevm.bam25@rathinam.in',
+    responsibilities: '3D CAD fluid manifold design, housing geometry modeling, and technical presentation asset creation.',
+    contribution: 'Authored 3D printable sensor manifold CAD repositories (`Aegis-H2O-3D`) and visual presentation graphics.',
+    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O-3D.git',
+    initials: 'SM'
+  },
+  {
+    name: 'Lathikashini',
+    role: 'Water Quality Research Analyst',
+    category: 'Research Contributions',
+    email: 'lathikashinic.bcs25@rathinam.in',
+    responsibilities: 'Water parameter baseline standards research, pH/TDS sensor calibration bounds, and scientific documentation.',
+    contribution: 'Research analysis on multi-parameter water quality thresholds and tri-layer filtration media concepts.',
+    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
+    initials: 'LK'
+  },
+  {
+    name: 'Sivadurga',
+    role: 'IoT Hardware Research Analyst',
+    category: 'Research Contributions',
+    email: 'sivadurgas.bcs25@rathinam.in',
+    responsibilities: 'Microcontroller hardware testing, optical turbidity probe evaluation, and empirical sensor data collection.',
+    contribution: 'Hardware signal fidelity research, sensor response testing, and technical documentation contributions.',
+    githubUrl: 'https://github.com/Super-Clusters-sih/Aegis-H2O.git',
+    initials: 'SD'
   }
 ];
 
@@ -60,7 +88,7 @@ const projectGoals = [
   </div>
 
   <!-- SECTION 1: PROJECT BACKGROUND & PROBLEM CONTEXT -->
-  <section class="section">
+  <section class="section" id="about">
     <div class="container grid-2-col">
       <div class="card-box reveal-on-scroll">
         <h2 class="card-box-title">Project Background</h2>
@@ -106,7 +134,7 @@ const projectGoals = [
   </section>
 
   <!-- SECTION 3: TEAM SUPER CLUSTERS -->
-  <section class="section">
+  <section class="section" id="team">
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">RESEARCH TEAM</span>

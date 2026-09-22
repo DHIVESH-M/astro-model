@@ -2,15 +2,17 @@
 interface Props {
   name: string;
   role: string;
+  category?: string;
+  email?: string;
   responsibilities: string;
   contribution: string;
   githubUrl?: string;
   initials?: string;
 }
 
-const { name, role, responsibilities, contribution, githubUrl, initials } = Astro.props;
+const { name, role, category, email, responsibilities, contribution, githubUrl, initials } = Astro.props;
 
-const memberInitials = initials || name.split(' ').map(n => n[0]).join('');
+const memberInitials = initials || name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
 ---
 
 <div class="team-card reveal-on-scroll">
@@ -18,7 +20,10 @@ const memberInitials = initials || name.split(' ').map(n => n[0]).join('');
     <div class="team-avatar">{memberInitials}</div>
     <div class="team-meta">
       <h3 class="team-name">{name}</h3>
-      <span class="badge role-badge">{role}</span>
+      <div class="team-badges">
+        <span class="badge role-badge">{role}</span>
+        {category && <span class="badge category-badge">{category}</span>}
+      </div>
     </div>
   </div>
 
@@ -34,14 +39,26 @@ const memberInitials = initials || name.split(' ').map(n => n[0]).join('');
     </div>
   </div>
 
-  {githubUrl && (
-    <div class="team-footer">
-      <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="team-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub Profile
+  <div class="team-footer">
+    {email && (
+      <a href={`mailto:${email}`} class="team-link team-email">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>{email}</span>
       </a>
-    </div>
-  )}
+    )}
+
+    {githubUrl && (
+      <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="team-link team-github">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub Profile</span>
+      </a>
+    )}
+  </div>
 </div>
 
 <style>
@@ -64,19 +81,19 @@ const memberInitials = initials || name.split(' ').map(n => n[0]).join('');
 
   .team-header {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 0.875rem;
     margin-bottom: var(--space-4);
   }
 
   .team-avatar {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background-color: var(--color-primary-light);
     color: var(--color-primary);
     font-weight: 800;
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-sm);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,17 +104,35 @@ const memberInitials = initials || name.split(' ').map(n => n[0]).join('');
   .team-meta {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.35rem;
+    min-width: 0;
   }
 
   .team-name {
     font-size: var(--font-size-lg);
     font-weight: 700;
     color: var(--color-text-primary);
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .team-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
   }
 
   .role-badge {
-    align-self: flex-start;
+    font-size: var(--font-size-xs);
+    white-space: normal;
+    text-align: left;
+  }
+
+  .category-badge {
+    background-color: var(--color-surface);
+    color: var(--color-accent-sky);
+    border-color: var(--color-border);
+    font-size: 0.7rem;
   }
 
   .team-body {
@@ -131,6 +166,9 @@ const memberInitials = initials || name.split(' ').map(n => n[0]).join('');
   .team-footer {
     padding-top: var(--space-3);
     border-top: 1px dashed var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .team-link {
@@ -141,9 +179,14 @@ const memberInitials = initials || name.split(' ').map(n => n[0]).join('');
     font-weight: 600;
     color: var(--color-text-secondary);
     transition: color 0.15s ease;
+    word-break: break-all;
   }
 
   .team-link:hover {
+    color: var(--color-primary);
+  }
+
+  .team-email {
     color: var(--color-primary);
   }
 </style>
